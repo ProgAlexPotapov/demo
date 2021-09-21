@@ -1,0 +1,48 @@
+/* CSS Variables */
+:root{
+  --bgColor: #f0f7ff;
+  --panelBgColor:#f8fbff;
+  --primColorRGB: 0, 113, 186;
+  --primColor: rgb(var(--primColorRGB));
+  --primColorLightRGB:127, 171, 247;
+  --primColorLight: rgb(var(--primColorLightRGB));
+  --primColorExLight: #e9f1ff;
+  --primColorMed: #148bed;
+  --boxShadow: rgba(var(--primColorRGB), 0.25);
+  --greyLight: rgba(0, 0, 0, 0.1);
+  --greyExLight: rgba(0, 0, 0, 0.05);
+  --grey: rgba(0, 0, 0, 0.15);
+  --greyDark: rgba(0, 0, 0, 0.2);
+  --greyExDark: rgba(0, 0, 0, 0.25);
+  --warningRGB: 222, 7, 28;
+  --warning: rgb(var(--warningRGB));
+  --warningBg: #ffe4e3;
+  --success:#05ad05;
+  --textColor: #2e3d4c;
+  --labelColor: #6c7781;
+  --brWidth:1px;
+  --primFont: "Gotham", 'sans-serif', "-apple-system", "BlinkMacSystemFont";
+  --plholderColor: #999;
+  --breakpoint-lg: 992px;
+  --breakpoint-md: 768px;
+  --breakpoint-sm: 576px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xs: 0;
+}
+
+/**************************************************
+Main Sections
+***************************************************/
+html, body, .main-app { height: 100%; }
+.main-app { background-color: var(--panelBgColor); display: flex; flex-direction: column; min-height: 100vh; }
+.main-body { flex: 1; overflow: hidden; width: 100%; }
+.data-viewport { flex: 1;  overflow: hidden;}
+.preloader-wr { height: 100%; width: 100%; }
+.preloader { position: relative; }
+  .preloader::after, .preloader::before { content: " "; position: absolute; }
+  .preloader::after { background-color: rgba(var(--primColorRGB),.15); border-radius: .25rem; bottom: 0; left: 0; right: 0; top: 0; z-index: 10; }
+  .preloader::before { animation: spin 2s linear infinite; border-color: var(--primColor) var(--grey); border-radius: 50%; border-style: solid; border-width: 0.75vw; height: 6vw; left: 50%; margin-left: -3vw; margin-top: -3vw; top: 50%; width: 6vw; z-index: 10; }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

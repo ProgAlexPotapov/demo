@@ -1,0 +1,134 @@
+<div class="left-side">
+  <!-- Mobile Menu -->
+  <section class="dropdown desktop-hidden phone-block" dropdown *ngIf="(isAuthenticated$ | async)">
+    <button id="button-mobile-menu" class="btn-menu" type="button" dropdownToggle aria-controls="mobileMenu">
+      <div class="hamburger-inner"></div>
+    </button>
+    <ul id="mobileMenu" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-mobile-menu">
+      <ng-container *ngIf="(isAuthenticated$ | async)">
+        <ng-container *ngIf="theme$ | async as currentTheme">
+          <li class="dropdown-item no-hover" role="menuitem"
+              *ngFor="let theme of themes">
+            <div class="custom-input">
+              <label>
+                <input class="form-control" type="radio" name="theme" [value]="theme.value"
+                       [attr.checked]="(theme.value === currentTheme)? 'checked' : null" (change)="onThemeSelect(theme.value)">
+                <span class="custom-input-label" translate>settings.themes.{{theme.label}}</span>
+              </label>
+            </div>
+          </li>
+          <li class="dropdown-divider"></li>
+        </ng-container>
+        <ng-container *ngIf="fontSize$ | async as currentFontSize">
+          <li class="dropdown-item no-hover" role="menuitem" *ngFor="let fontSize of fontSizes">
+            <div class="custom-input">
+              <label>
+                <input class="form-control" type="radio" name="fontSize" [value]="fontSize.value"
+                       [attr.checked]="(fontSize.value === currentFontSize)? 'checked' : null"
+                       (change)="onFontSelect(fontSize.value)">
+                <span class="custom-input-label" translate>{{fontSize.value}}</span>
+              </label>
+            </div>
+          </li>
+          <li class="dropdown-divider"></li>
+          <li class="" role="menuitem" >
+            <button class="btn btn-primary w-100" routerLink="/catalog" *ngIf="(isAuthenticated$ | async)">
+              {{'catalog' | translate}}
+            </button>
+          </li>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </section>
+  <div class="logo clickable" routerLink="">
+    <i class="icon-AppStore"></i>
+    <span class="phone-hidden">{{ 'title.long' | translate }}</span>
+  </div>
+</div>
+<div class="right-side">
+  <button class="btn btn-primary m-right phone-hidden" routerLink="/catalog"
+          *ngIf="(isAuthenticated$ | async)">
+    {{'catalog' | translate}}
+  </button>
+  <!-- User Menu -->
+  <div class="user-info">
+    <div #userDropdown class="dropdown" dropdown *ngIf="isAuthenticated$ | async; else notAuth">
+      <div id="button-user-menu" dropdownToggle class="user-name dropdown-toggle"
+           aria-controls="user-menu" *ngIf="user$ | async as currentUser">
+          <div class="avatar active">
+            <img alt="User Image" class="avatarImage" src="assets/images/{{currentUser.userUrlImage}}">
+           </div>
+          <span class="mobile-hidden">{{currentUser.firstName}} {{currentUser.lastName}}</span>
+      </div>
+      <ul id="user-menu" *dropdownMenu class="dropdown-menu menu-right"
+          role="menu" aria-labelledby="button-user-menu" >
+          <li class="dropdown-item" role="menuitem" (click)="onOpenModal(aboutMe)">
+            <i class="icon-About"></i>
+            {{ 'aboutMe' | translate }}
+          </li>
+          <li class="dropdown-divider"></li>
+          <li class="dropdown-item" role="menuitem" (click)="onLogoutClick()">
+            <i class="icon-TurnOff"></i>
+            {{ 'menu.logout' | translate }}
+          </li>
+      </ul>
+    </div>
+    <ng-template #notAuth>
+      <div class="avatar" routerLink="/login">
+        <span class="icon-UserSystem" ></span>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- Settings -->
+  <div class="dropdown m-left m-right phone-hidden" dropdown *ngIf="(isAuthenticated$ | async) && (isAdmin$ | async)">
+    <button id="button-settings-menu" class="btn btn-clear btn-settings" type="button"
+            dropdownToggle aria-controls="settings-menu" title="Settings"></button>
+    <ul id="settings-menu" *dropdownMenu class="dropdown-menu menu-right"
+        role="menu" aria-labelledby="button-settings-menu">
+        <ng-container *ngIf="theme$ | async as currentTheme">
+          <li class="dropdown-item no-hover" role="menuitem"
+              *ngFor="let theme of themes">
+            <div class="custom-input">
+              <label>
+                <input class="form-control" type="radio" name="theme" [value]="theme.value"
+                       [attr.checked]="(theme.value === currentTheme)? 'checked' : null" (change)="onThemeSelect(theme.value)">
+                <span class="custom-input-label" translate>settings.themes.{{theme.label}}</span>
+              </label>
+            </div>
+          </li>
+          <li class="dropdown-divider"></li>
+        </ng-container>
+        <ng-container *ngIf="fontSize$ | async as currentFontSize">
+          <li class="dropdown-item no-hover" role="menuitem" *ngFor="let fontSize of fontSizes">
+            <div class="custom-input">
+              <label>
+                <input class="form-control" type="radio" name="fontSize" [value]="fontSize.value"
+                       [attr.checked]="(fontSize.value === currentFontSize)? 'checked' : null"
+                       (change)="onFontSelect(fontSize.value)">
+                <span class="custom-input-label" translate>{{fontSize.value}}</span>
+              </label>
+            </div>
+          </li>
+        </ng-container>
+    </ul>
+  </div>
+
+  <!-- Language Picker -->
+  <div class="dropdown" dropdown placement="right" *ngIf="language$ | async as language">
+    <div class="dropdown-toggle lang-picker" id="lang-picker" dropdownToggle>
+      <span class="lang-picker-item">{{language}}</span>
+    </div>
+    <ul class="dropdown-menu menu-right" *dropdownMenu aria-labelledby="lang-picker">
+      <li class="dropdown-item" role="menuitem"
+          (click)="onLanguageSelect(lang)"
+          [class.active]="lang === language"
+          *ngFor="let lang of languages" translate>settings.general.language.{{lang}}</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Modal About Us -->
+<ng-template #aboutMe>
+  <app-about-me (aboutMeCloseClick)='onCloseAboutMe($event)'></app-about-me>
+</ng-template>

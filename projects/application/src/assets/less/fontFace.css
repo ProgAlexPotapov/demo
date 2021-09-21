@@ -1,0 +1,32 @@
+/**************************************************
+Icons Fonts
+***************************************************/
+@font-face {
+  font-family: 'icon';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../fonts/icon.ttf') format('truetype');
+}
+
+/**************************************************
+Gotham
+***************************************************/
+/* @font-face { font-family: Gotham; font-style: normal; font-weight: 400; src: url("../fonts/Gotham Regular.otf") format("truetype"); } */
+/* @font-face { font-family: Gotham; font-style: normal; font-weight: 500; src: url("../fonts/Gotham Medium.otf") format("truetype"); } */
+
+
+/**************************************************
+Fonts Roboto
+***************************************************/
+/*@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/Roboto-Medium.ttf') format('truetype');
+}*/

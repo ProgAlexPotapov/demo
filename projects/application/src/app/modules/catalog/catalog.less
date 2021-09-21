@@ -1,0 +1,30 @@
+.catalog{display: block;overflow: hidden; width: 100%;}
+.inline .custom-input + .custom-input{margin-left: 1rem;}
+.btn-group .btn.active{color: var(--primColor)}
+.custom-input-container {display: grid;grid-gap: 1rem;grid-template-columns: repeat(auto-fill, minmax(5.75rem, 1fr));}
+.filter-row{
+  .left-side, .right-side{width: 50%;
+    @media screen and (max-width: 768px) { width: 100%;}
+  }
+}
+@media screen and (max-width: 768px) {
+  h5 {margin-top: 0;}
+  .filter-row .right-side{margin-top: 1.5rem;}
+}
+@media screen and (max-width: 400px) {
+.accordeon-label{display: none;}
+}
+
+.car .card-title { text-transform: capitalize; }
+.car .card-body { padding: 0; }
+.car-img { height: 13vw; object-fit: cover; object-position: center; width: 100%;
+  @media screen and (max-width: 1570px) { height: 16rem; }
+  @media screen and (max-width: 1460px) { height: 15rem; }
+  @media screen and (max-width: 1395px) { height: 14rem; }
+  @media screen and (max-width: 1130px) { height: 17rem; }
+  @media screen and (max-width: 780px) { height: 13.5rem; }
+  @media screen and (max-width: 665px) { height: 18.5rem; }
+  @media screen and (max-width: 480px) { height: 14rem; }
+}
+
+

@@ -1,0 +1,7 @@
+<!-- header -->
+<app-header></app-header>
+
+<!-- main app container -->
+<section class="main-body" [@routeAnimations]="o.isActivated && o.activatedRoute.routeConfig.data && o.activatedRoute.routeConfig.data.title">
+  <router-outlet #o="outlet"></router-outlet>
+</section>

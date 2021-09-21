@@ -1,0 +1,202 @@
+.container { max-width: 1020px; margin-right: auto;margin-left: auto; padding-left: 1rem; padding-right: 1rem; overflow: hidden; width: 100%;}
+
+/**************************************************
+Grid
+***************************************************/
+.grid-row { align-items: center; display: flex; flex: 1; flex-wrap: wrap; justify-content: space-between; margin-left: -.375rem; margin-right: -.375rem; }
+.grid-row.noWrap { flex-wrap: nowrap !important; }
+.grid-row.block { display: block; }
+.grid-row.block > .grid-col { float: left }
+.grid-row > .grid-col { display: inline-block; padding-left: .375rem; padding-right: .375rem; }
+.grid-row > .grid-col.flx { flex: 1; }
+.grid-row > .grid-col.label-beam { margin-top: .65rem; }
+.grid-row.spaceLg { margin-left: -2.5rem; margin-right: -2.5rem; }
+.grid-row.spaceLg > .grid-col { padding-left: 2.5rem; padding-right: 2.5rem; }
+.grid-row.spaceMd { margin-left: -15px; }
+.grid-row.spaceMd > .grid-col { padding-left: 15px; }
+.grid-row.spaceSm { margin-left: -10px; }
+.grid-row.spaceSm > .grid-col { padding-left: 10px; }
+.grid-row.spaceNone { margin-left: 0; margin-right: 0; }
+.grid-row.spaceNone > .grid-col { padding-left: 0; padding-right: 0; }
+
+
+/**************************************************
+  Override base columns gap
+  ***************************************************/
+.grid-row.colSpaceLg { margin-left: -30px; }
+.grid-row.colSpaceLg > .grid-col { padding-left: 30px; }
+.grid-row.colSpaceDft { margin-left: -20px; }
+.grid-row.colSpaceDft > .grid-col { padding-left: 20px; }
+.grid-row.colSpcMd { margin-left: -15px; }
+.grid-row.colSpcMd > .grid-col { padding-left: 15px; }
+.grid-row.colSpaceSm { margin-left: -10px; }
+.grid-row.colSpcSmall > .grid-col { padding-left: 10px; }
+.grid-row.colSpcMc { margin-left: -2px; }
+.grid-row.colSpcMc > .grid-col { padding-left: 2px; }
+.grid-row.colSpcNone { margin-left: 0; }
+.grid-row.colSpcNone > .grid-col { padding-left: 0; }
+.grid-row.bottom { align-items: flex-end !important; }
+.grid-row.top { align-items: flex-start !important; }
+.grid-row.middle { align-items: center !important; }
+.grid-row.stretch { align-items: stretch !important; }
+.grid-row.stretch > .grid-col > .grid-row { height: 100%; }
+.grid-row.leftAlign { justify-content: flex-start !important; }
+.grid-row.rightAlign { justify-content: flex-end !important; }
+.grid-row.centerAlign { justify-content: center !important; }
+
+.grid-col.leftAlign { text-align: left; }
+.grid-col.rightAlign { text-align: right; }
+.grid-col.centerAlign { text-align: center; }
+
+/**************************************************
+Percent Size
+***************************************************/
+.lg100 { width: 100%; }
+.lg90 { width: 90%; }
+.lg85 { width: 85%; }
+.lg81 { width: 81%; }
+.lg80 { width: 80%; }
+.lg75 { width: 75%; }
+.lg70 { width: 70%; }
+.lg66 { width: 66.66667%; }
+.lg65 { width: 65%; }
+.lg60 { width: 60%; }
+.lg55 { width: 55%; }
+.lg54 { width: 54%; }
+.lg50 { width: 50%; }
+.lg48 { width: 48%; }
+.lg45 { width: 45%; }
+.lg40 { width: 40%; }
+.lg35 { width: 35%; }
+.lg33 { width: 33.3333%; }
+.lg30 { width: 30%; }
+.lg27 { width: 27%; }
+.lg25 { width: 25%; }
+.lg20 { width: 20%; }
+.lg19 { width: 19%; }
+.lg15 { width: 15%; }
+.lg13 { width: 13.5%; }
+.lg10 { width: 10%; }
+.lg5 { width: 5%; }
+
+.fix20 { width: 20px; }
+.fix28 { width: 28px; }
+.fix30 { width: 30px; }
+.fix35 { width: 35px; }
+.fix40 { width: 40px; }
+.fix45 { width: 45px; }
+.fix50 { width: 50px; }
+.fix55 { width: 50px !important; }
+.fix60 { width: 60px; }
+.fix65 { width: 65px; }
+.fix70 { width: 70px; }
+.fix80 { width: 80px; }
+.fix85 { width: 85px; }
+.fix90 { width: 90px; }
+.fix95 { width: 95px; }
+.fix100 { width: 100px; }
+.fix110 { width: 110px; }
+.fix120 { width: 120px; }
+.fix140 { width: 140px; }
+.fix150 { width: 150px; }
+.fix160 { width: 160px; }
+.fix170 { width: 170px; }
+.fix180 { width: 180px; }
+.fix200 { width: 200px; }
+.fix220 { width: 220px; }
+.fix250 { width: 250px; }
+.fix270 { width: 270px; }
+.fix320 { width: 320px; }
+.fix360 { width: 360px; }
+.fix415 { width: 415px; }
+
+@media screen and (max-width: 1400px) {
+  .md100 { width: 100%; }
+  .md90 { width: 90%; }
+  .md85 { width: 85%; }
+  .md81 { width: 81%; }
+  .md80 { width: 80%; }
+  .md75 { width: 75%; }
+  .md70 { width: 70%; }
+  .md66 { width: 66.66667%; }
+  .md65 { width: 65%; }
+  .md60 { width: 60%; }
+  .md55 { width: 55%; }
+  .md54 { width: 54%; }
+  .md50 { width: 50%; }
+  .md48 { width: 48%; }
+  .md45 { width: 45%; }
+  .md40 { width: 40%; }
+  .md35 { width: 35%; }
+  .md33 { width: 33.3333%; }
+  .md30 { width: 30%; }
+  .md27 { width: 27%; }
+  .md25 { width: 25%; }
+  .md20 { width: 20%; }
+  .md19 { width: 19%; }
+  .md15 { width: 15%; }
+  .md13 { width: 13.5%; }
+  .md10 { width: 10%; }
+  .md5 { width: 5%; }
+}
+
+@media screen and (max-width: 768px) {
+  .sm100 { width: 100%; }
+  .sm90 { width: 90%; }
+  .sm85 { width: 85%; }
+  .sm81 { width: 81%; }
+  .sm80 { width: 80%; }
+  .sm75 { width: 75%; }
+  .sm70 { width: 70%; }
+  .sm66 { width: 66.66667%; }
+  .sm65 { width: 65%; }
+  .sm60 { width: 60%; }
+  .sm55 { width: 55%; }
+  .sm54 { width: 54%; }
+  .sm50 { width: 50%; }
+  .sm48 { width: 48%; }
+  .sm45 { width: 45%; }
+  .sm40 { width: 40%; }
+  .sm35 { width: 35%; }
+  .sm33 { width: 33.3333%; }
+  .sm30 { width: 30%; }
+  .sm27 { width: 27%; }
+  .sm25 { width: 25%; }
+  .sm20 { width: 20%; }
+  .sm19 { width: 19%; }
+  .sm15 { width: 15%; }
+  .sm13 { width: 13.5%; }
+  .sm10 { width: 10%; }
+  .sm5 { width: 5%; }
+}
+
+
+@media screen and (max-width: 480px) {
+  .xsm100 { width: 100%; }
+  .xsm90 { width: 90%; }
+  .xsm85 { width: 85%; }
+  .xsm81 { width: 81%; }
+  .xsm80 { width: 80%; }
+  .xsm75 { width: 75%; }
+  .xsm70 { width: 70%; }
+  .xsm66 { width: 66.66667%; }
+  .xsm65 { width: 65%; }
+  .xsm60 { width: 60%; }
+  .xsm55 { width: 55%; }
+  .xsm54 { width: 54%; }
+  .xsm50 { width: 50%; }
+  .xsm48 { width: 48%; }
+  .xsm45 { width: 45%; }
+  .xsm40 { width: 40%; }
+  .xsm35 { width: 35%; }
+  .xsm33 { width: 33.3333%; }
+  .xsm30 { width: 30%; }
+  .xsm27 { width: 27%; }
+  .xsm25 { width: 25%; }
+  .xsm20 { width: 20%; }
+  .xsm19 { width: 19%; }
+  .xsm15 { width: 15%; }
+  .xsm13 { width: 13.5%; }
+  .xsm10 { width: 10%; }
+  .xsm5 { width: 5%; }
+}

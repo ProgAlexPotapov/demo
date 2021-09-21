@@ -1,0 +1,195 @@
+<div class="layout horizontal" [ngClass]="{ panelOpen: qfOpen }">
+  <div class="layoutPanel dynamic">
+    <!--    <div class="Panel borderRight" [ngClass]="{ preloader: loading }">-->
+    <div class="Panel borderRight">
+      <div class="Panel-Header card-header">
+        <div class="card-title with-people-image">
+          <div class="people-list-image">
+            <img alt="Car" src="assets/images/car.png">
+          </div>
+          {{ 'catalogAuto' | translate }}
+        </div>
+        <div class="right-side">
+          <div class="btn-group">
+            <label class="btn btn-white btn-icon" title="Card Mode"
+                   [(ngModel)]="catalogMode" (click)="onCatalogModeSelect(catalogMode)"
+                   btnRadio="card" tabindex="0" role="button">
+              <i class="icon-SmallSize"></i>
+            </label>
+            <label class="btn btn-white btn-icon" title="List Mode"
+                   [(ngModel)]="catalogMode" (click)="onCatalogModeSelect(catalogMode)"
+                   btnRadio="list" tabindex="0" role="button">
+              <i class="icon-List"></i>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="Panel-Body">
+        <section class="Panel-Tbar add-toolbar">
+          <div class="content">
+            <section class="left-side">
+              <button class="btn btn-clear btn-filter" type="button" title="Filters"
+                      (click)="panelFilters=!panelFilters"></button>
+              <div class="switch-checkbox m-left" *ngIf="catalogMode==='list'">
+                <label for="accordeonExpand">
+                  <span class="accordeon-label">{{ 'collapseAll' | translate }}</span>
+                  <input id="accordeonExpand" type="checkbox" (change)="accordeonIsOpen = !accordeonIsOpen">
+                  <span></span>
+                </label>
+              </div>
+            </section>
+            <section class="right-side m-left-medium">
+              <input class="form-control i-search" type="text" placeholder="{{('search.' + filterField)| translate }}"
+                     [(ngModel)]="filterFieldValue" [disabled]="catalogMode==='list' && !accordeonIsOpen">
+            </section>
+          </div>
+          <div id="hover-toolbar" class="hover-toolbar"
+               [ngClass]="{'active': panelFilters}">
+            <div class="grid-row leftAlign spaceLg top filter-row">
+              <div class="grid-col left-side">
+                <h5>Select Cars Mark</h5>
+                <div class="custom-input-container">
+                  <div class="custom-input" *ngFor="let selectedMark of selectedMarks; let i=index">
+                    <label>
+                      <input class="form-control" type="checkbox" name="mark{{i}}"
+                             (change)="selectMark($event, selectedMark)">
+                      <span class="custom-input-label">{{selectedMark}}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-col right-side">
+                <h5>Filter By</h5>
+                <div class="custom-input-container">
+                  <div class="custom-input" *ngFor="let filter of filterFields">
+                    <label>
+                      <input class="form-control" type="radio" name="filterField" [value]="filter.value"
+                             [attr.checked]="(filter.label === filterField)? 'checked' : null"
+                             (change)="onFilterFieldSelect(filter.label)">
+                      <span class="custom-input-label" translate>{{filter.label}}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="Panel-Content Y-Scroll custom-scroll">
+          <div [ngSwitch]="catalogMode">
+            <div *ngSwitchCase="'card'">
+              <ng-container *ngTemplateOutlet="card"></ng-container>
+            </div>
+            <div *ngSwitchCase="'list'">
+              <ng-container *ngTemplateOutlet="list"></ng-container>
+            </div>
+          </div>
+          <ng-template #card>
+            <div class="widget-container" [ngClass]="{'preloader fixed': triggerAnimation}">
+              <ng-container *ngFor="let mark of carsListFiltered; let i=index">
+                <div class="widget"
+                     *ngFor="let car of mark.cars | searchCar: filterField: filterFieldValue; let j=index">
+                  <section class="card car">
+                    <section class="card-header">
+                      <div class="card-title">
+                        {{mark.mark}}
+                        <span class="card-subtitle">{{car.model}}</span>
+                      </div>
+                    </section>
+                    <section class="card-body col-dir">
+                      <img class="car-img" src="{{car.imgUrl}}" alt="{{mark.mark}} {{car.model}}"
+                           (click)="selectCar($event, mark.mark, car, catalogMode)">
+                      <div class="desktop-hidden phone-block">
+                        <div class="summary-control">
+                          <div class="switch-checkbox">
+                            <label for="summary_{{i}}{{j}}">
+                              {{'car_summary' | translate }}
+                              <input id="summary_{{i}}{{j}}" type="checkbox"
+                                     (change)="summaryToggle($event, 'summaryContent_'+i+j)">
+                              <span></span>
+                            </label>
+                          </div>
+                        </div>
+                        <div id="summaryContent_{{i}}{{j}}" class="large-card-content">
+                          <section class="item-list bordered content-justify">
+                            <div class="item highlighted">
+                              <span class="text-primary">{{'color' | translate }}</span>
+                              <span>{{car.color}}</span>
+                            </div>
+                            <div class="item highlighted">
+                              <span class="text-primary">{{'price' | translate }}</span>
+                              <span>{{car.price | currency}}</span>
+                            </div>
+                            <div class="item highlighted">
+                              <span class="text-primary">{{'bodyType' | translate }}</span>
+                              <span>{{car.bodyType}}</span>
+                            </div>
+                          </section>
+                        </div>
+                      </div>
+                    </section>
+                  </section>
+                </div>
+              </ng-container>
+            </div>
+          </ng-template>
+          <ng-template #list>
+            <accordion [ngClass]="{'preloader fixed': triggerAnimation}">
+              <accordion-group *ngFor="let mark of carsListFiltered; let i=index" [isOpen]="accordeonIsOpen">
+                <span accordion-heading>
+                  <img alt="mark Logo" src="{{mark.markImgUrl}}"> {{mark.mark}}
+                </span>
+                <div class="widget-container">
+                  <div class="widget"
+                       *ngFor="let car of mark.cars | searchCar: filterField: filterFieldValue; let j=index">
+                    <section class="card hovered car">
+                      <section class="card-header">
+                        <div class="card-title">
+                          {{mark.mark}}
+                          <span class="card-subtitle">{{car.model}}</span>
+                        </div>
+                      </section>
+                      <section class="card-body col-dir">
+                        <img class="car-img" src="{{car.imgUrl}}"
+                             (click)="selectCar($event, mark.mark, car, catalogMode)">
+                        <div class="desktop-hidden phone-block">
+                          <div class="summary-control">
+                            <div class="switch-checkbox">
+                              <label for="summary_{{i}}{{j}}">
+                                {{'car_summary' | translate }}
+                                <input id="summary_{{i}}{{j}}" type="checkbox"
+                                       (change)="summaryToggle($event, 'summaryContent_'+i+j)">
+                                <span></span>
+                              </label>
+                            </div>
+                          </div>
+                          <div id="summaryContent_{{i}}{{j}}" class="large-card-content">
+                            <section class="item-list bordered content-justify">
+                              <div class="item highlighted">
+                                <span class="text-primary">{{'color' | translate }}</span>
+                                <span>{{car.color}}</span>
+                              </div>
+                              <div class="item highlighted">
+                                <span class="text-primary">{{'price' | translate }}</span>
+                                <span>{{car.price | currency}}</span>
+                              </div>
+                              <div class="item highlighted">
+                                <span class="text-primary">{{'bodyType' | translate }}</span>
+                                <span>{{car.bodyType}}</span>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
+                      </section>
+                    </section>
+                  </div>
+                </div>
+              </accordion-group>
+            </accordion>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-quick-form class="phone-hidden" [mark]="currentMark" [car]="currentCar" [trAnimation]="qfTrAnimation"
+                  (flagQuickForm)="closeQuickForm($event)"></app-quick-form>
+</div>

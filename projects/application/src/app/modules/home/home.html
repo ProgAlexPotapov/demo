@@ -1,0 +1,32 @@
+<div class="banner">
+  <h1>{{ 'catalogAuto' | translate | titlecase }}</h1>
+</div>
+<section class="container">
+  <div class="text-center">
+    <button class="btn btn-lg btn-primary" routerLink="/login" [disabled]="(isAuthenticated$ | async)">
+      {{ 'register' | translate }}
+    </button>
+    <h2 class="text-primary-med m-top-large">{{'technology.used' | translate }}</h2>
+  </div>
+
+  <div class="container widget-container">
+    <ng-container *ngFor="let technology of technologies">
+      <div class="widget" [ngClass]="routeAnimationsElements">
+        <section class="card home">
+          <section class="card-header">
+            <div class="card-title text-primary">
+              {{technology.name | translate}}
+            </div>
+          </section>
+          <section class="card-body">
+            {{ technology.description | translate }}
+          </section>
+        </section>
+      </div>
+    </ng-container>
+  </div>
+</section>
+
+
+
+

@@ -1,0 +1,71 @@
+/* CSS Variables */
+:root{
+  --greyLight: rgba(0, 0, 0, 0.1);
+  --greyExLight: rgba(0, 0, 0, 0.05);
+  --grey: rgba(0, 0, 0, 0.15);
+  --greyDark: rgba(0, 0, 0, 0.2);
+  --greyExDark: rgba(0, 0, 0, 0.25);
+  --warningRGB: 222, 7, 28;
+  --warning: rgb(var(--warningRGB));
+  --warningBg: #ffe4e3;
+  --success:#05ad05;
+  --textColor: #2e3d4c;
+  --labelColor: #6c7781;
+  --bgGradientExLight:linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
+  --bgGradientLight:linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4));
+  --bgGradientMedium:linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
+  --brWidth:1px;
+  --plholderColor: #999;
+  --breakpoint-lg: 992px;
+  --breakpoint-md: 768px;
+  --breakpoint-sm: 576px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xs: 0;
+ }
+
+.blue-theme{
+  --bgColor: #f0f7ff;
+  --panelBgColor:#f8fbff;
+  --primColorRGB: 0, 113, 186;
+  --primColor: rgb(var(--primColorRGB));
+  --primColorLightRGB:127, 171, 247;
+  --primColorLight: rgb(var(--primColorLightRGB));
+  --primColorExLight: #e9f1ff;
+  --primColorMed: #148bed;
+  --boxShadow: rgba(var(--primColorRGB), 0.25);
+
+}
+
+.red-theme {
+  --bgColor: #faefef;
+  --panelBgColor: #fff6f6;
+  --primColorRGB: 191, 13, 47;
+  --primColor: rgb(var(--primColorRGB));
+  --primColorLightRGB:230, 181, 181;
+  --primColorLight: rgb(var(--primColorLightRGB));
+  --primColorExLight: #f6e7e7;
+  --primColorMed: #ff4a4a;
+  --boxShadow: rgba(var(--primColorRGB), 0.25);
+}
+
+.orange-theme{
+  --bgColor: #f1ebe0;
+  --panelBgColor: #faf6f0;
+  --primColor: #f90;
+  --primColorRGB: 255, 153, 0;
+  --primColorLightRGB:230, 200, 181;
+  --primColorLight: rgb(var(--primColorLightRGB));
+  --primColorExLight: #f2e8d6;
+  --primColorMed: #f90;
+  --boxShadow: rgba(var(--primColorRGB), 0.25);
+}
+
+[font="normal-font"] { --fontSize: 14px; }
+[font="medium-font"] { --fontSize: 15px; }
+[font="large-font"]{ --fontSize: 16px; }
+
+@media screen and (min-width: 2000px) {
+  [font="normal_font"] { --fontSize: 13px; }
+  [font="medium_font"] { --fontSize: 14px; }
+  [font="large_font"] { --fontSize: 15px; }
+}

@@ -1,0 +1,14 @@
+<div class="about-us">
+  <button class="btn btn-close" aria-label="Close" (click)="onCloseClick()"></button>
+  <div class="inline m-bottom-large">
+    <div class="logo clickable" routerLink="">
+      <i class="icon-AppStore"></i>
+    </div>
+    <h1>{{'title.long' | translate}}</h1>
+  </div>
+  <h4 class="text-primary">{{user.firstName}}&nbsp;{{user.lastName}}</h4>
+  <div>
+    <strong>{{user.phone}}</strong>
+  </div>
+  <div class="text-primary">{{user.email}}</div>
+</div>
