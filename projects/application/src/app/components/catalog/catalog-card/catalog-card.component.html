@@ -1,0 +1,42 @@
+<section class="card hovered car elevation-z1"
+         *ngIf="carSelected$ | async as carSelected"
+         [ngClass]="{'active': carSelected.car.id === carItem.car.id}"
+         (click)="selectCar(carItem.mark, carItem.car)">
+  <section class="card-header">
+    <div class="card-title">
+      {{carItem.mark}}
+      <span class="card-subtitle">{{carItem.car.model}}</span>
+    </div>
+  </section>
+  <section class="card-body col-dir">
+    <img class="car-img" alt="Car Image" src="{{carItem.car['imgUrl']}}">
+    <div class="desktop-hidden phone-block">
+      <div class="summary-control">
+        <div class="switch-checkbox">
+          <label for="summary_{{carItem.rowInd}}{{carItem.colInd}}">
+            {{'car_summary' | translate }}
+            <input id="summary_{{carItem.rowInd}}{{carItem.colInd}}" type="checkbox"
+                   (change)="summaryToggle($event, 'summaryContent_'+carItem.rowInd+carItem.colInd)">
+            <span></span>
+          </label>
+        </div>
+      </div>
+      <div id="summaryContent_{{carItem.rowInd}}{{carItem.colInd}}" class="large-card-content">
+        <section class="item-list bordered content-justify">
+          <div class="item highlighted">
+            <span class="text-primary">{{'color' | translate }}</span>
+            <span>{{carItem.car.color}}</span>
+          </div>
+          <div class="item highlighted">
+            <span class="text-primary">{{'price' | translate }}</span>
+            <span>{{carItem.car['price'] | currency}}</span>
+          </div>
+          <div class="item highlighted">
+            <span class="text-primary">{{'bodyType' | translate }}</span>
+            <span>{{carItem.car['bodyType']}}</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</section>

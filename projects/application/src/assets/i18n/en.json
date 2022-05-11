@@ -1,46 +1,63 @@
 {
   "success.login": "You have successfully registered",
   "error.login": "Registration error",
-  "menu.login": "Sign in",
-  "menu.logout": "Logout",
-  "menu.username": "Username",
-  "menu.password": "Password",
-  "menu.settings": "Settings",
+  "menu": {
+    "login": "Sign in",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "settings": "Settings"
+  },
   "collapseAll": "Collapse All",
   "model": "Model",
   "bodyType": "Body type",
-  "search.model": "Search by Model",
-  "search.color": "Search by Color",
-  "search.bodyType": "Search by Body type",
-  "settings.general.language.de": "German",
-  "settings.general.language.en": "English",
-  "settings.general.language.fr": "French",
-  "settings.themes.orange": "Orange Theme",
-  "settings.themes.blue": "Blue Theme",
-  "settings.themes.red": "Red Theme",
-  "normal-font": "Normal font",
-  "medium-font": "Medium font",
-  "large-font": "Large font",
+  "search": {
+    "selectCarsMark": "Select Cars Mark",
+    "filterBy": "Filter By",
+    "model": "Search by Model",
+    "color": "Search by Color",
+    "bodyType": "Search by Body type"
+  },
+  "settings": {
+    "language": {
+      "de": "German",
+      "en": "English",
+      "fr": "French"
+    },
+    "theme": {
+      "orange": "Orange Theme",
+      "blue": "Blue Theme",
+      "red": "Red Theme"
+    },
+    "font": {
+      "normal": "Normal font",
+      "medium": "Medium font",
+      "large": "Large font"
+    }
+  },
   "aboutMe": "About me",
   "color": "Color",
   "price": "Price",
   "expandAll": "Expand All",
   "catalog": "Catalog",
+  "catalogIsEmpty": "The catalog is empty",
   "catalogAuto": "Car catalog",
   "car_summary": "Car Summary",
   "register": "Register",
   "title.long": "Angular Demo App",
   "title.short": "Angular Demo",
-  "technology.used": "Technologies used in the project",
-  "technology.angular": "Modern powerful framework",
-  "technology.angular-cli": "A command line interface for Angular",
-  "technology.angular-material": "Material design component library",
-  "technology.bootstrap": "Responsive layout from battle tested, world most famous UI library",
-  "technology.fontawesome": "Easy to use vector icons and social logos",
-  "technology.ngrx": "One way data flow powered by RxJS Observables",
-  "technology.ngxtranslate": "An internationalization library for Angular",
-  "technology.rxjs": "Reactive programming with async collections using Observables",
-  "technology.themes.description": "Flexible theming support for provided and custom components",
-  "technology.typescript": "Superior developer experience, code completion, refactoring and less bugs",
-  "technology.eslint": "ESLint is for identifying problematic patterns found in JavaScript and Typescript code"
+  "technology": {
+    "used": "Technologies used in the project",
+    "angular": "Modern powerful framework",
+    "angular-cli": "A command line interface for Angular",
+    "angular-material": "Material design component library",
+    "bootstrap": "Responsive layout from battle tested, world most famous UI library",
+    "fontawesome": "Easy to use vector icons and social logos",
+    "ngrx": "One way data flow powered by RxJS Observables",
+    "ngxtranslate": "An internationalization library for Angular",
+    "rxjs": "Reactive programming with async collections using Observables",
+    "themes": "Flexible theming support for provided and custom components",
+    "typescript": "Superior developer experience, code completion, refactoring and less bugs",
+    "eslint": "ESLint is for identifying problematic patterns found in JavaScript and Typescript code"
+  }
 }

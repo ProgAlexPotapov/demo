@@ -14,10 +14,11 @@ fadeIn Animation
 /**************************************************
 Card
 ***************************************************/
-.card { box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12); transition: box-shadow 0.3s ease-in 0s, border-color 0.3s ease-in 0s;
+.card {border: none; transition: box-shadow 0.3s ease-in 0s, border-color 0.3s ease-in 0s;
   &.hovered:not(.active):hover { box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12); }
   &.transparent { background-color: var(--panelBgColor); }
-  &.active { border-color: var(--primColorLight); box-shadow: 0 0 0 0.2rem rgba(var(--primColorLightRGB), 0.5); }
+  &.active { border-color: var(--primColorLight); box-shadow: 0 0 0 0.2rem rgba(var(--primColorLightRGB), 0.5), 0 2px 1px -1px #0003,0 1px 1px #00000024,0 1px 3px #0000001f; }
+  .responsive{ height: 30vw; }
 }
 
 .card-header, .card-footer { align-items: center; background-color: #fff; display: flex; flex-wrap: nowrap; height: 3rem; padding: .55rem 1rem; position: relative; z-index: 3;
@@ -198,8 +199,8 @@ Preloader
 ***************************************************/
 .preloader { position: relative;
   &::after, &::before { content: " "; position: absolute; }
-  &::before { animation: spin 2s linear infinite; border-color: var(--primColor) var(--grey); border-radius: 50%; border-style: solid; border-width: .35vh; height: 5vh; left: 50%; margin-left: -2.5vh; margin-top: -2.5vh; top: 50%; width: 5vh; z-index: 10; }
-  &::after { background-color: rgba(var(--primColorRGB),.15); border-radius: .25rem; bottom: 0; left: 0; right: 0; top: 0; z-index: 10; }
+  &::before { animation: spin 2s linear infinite; border-color: var(--primColor) var(--grey); border-radius: 50%; border-style: solid; border-width: .35vh; height: 5vh; left: 50%; margin-left: -2.5vh; margin-top: -2.5vh; top: 50%; width: 5vh; z-index: 9; }
+  &::after { background-color: rgba(var(--primColorRGB),.15); border-radius: .25rem; bottom: 0; left: 0; right: 0; top: 0; z-index: 9; }
 }
 .preloader.fixed {
   &::before { position: fixed; }
@@ -215,5 +216,5 @@ Modal
 ***************************************************/
 .modal { background-color: rgba(0,0,0,.1); display: none; height: 100%; left: 0; outline: 0; overflow: hidden; position: fixed; text-align: center; top: 0; width: 100%; z-index: 1050; }
 .modal:after { content: ""; display: inline-block; height: 100%; vertical-align: middle; }
-.modal-dialog { border-radius: .3rem; box-shadow: 0px 0px 1.5rem rgba(var(--primColorRGB),.4); display: inline-block; margin: 4rem 0 0 !important; max-width: 98%; pointer-events: none; text-align: left; vertical-align: middle; width: auto; }
+.modal-dialog { border-radius: .3rem; box-shadow: 0 0 1.5rem rgba(var(--primColorRGB),.4); display: inline-block; margin: 4rem 0 0 !important; max-width: 98%; pointer-events: none; text-align: left; vertical-align: middle; width: auto; }
 .modal-content .btn-close { position: absolute; right: 1rem; top: 1rem; }

@@ -1,0 +1,35 @@
+<div class="Panel borderLeft" *ngIf="{ trDataAnimation: trAnimation$ | async, sCar: car$ | async } as state">
+  <div class="Panel-Header card-header">
+    <div class="card-title">
+      {{state.sCar?.mark}}
+      <span class="card-subtitle">{{state.sCar?.car.model}}</span>
+    </div>
+    <button aria-label="Close" class="btn btn-close" (click)="closeQuickForm()"></button>
+  </div>
+    <div class="Panel-Body">
+      <div class="Panel-Content Y-Scroll custom-scroll">
+        <section class="card elevation-z2" [ngClass]="{ preloader: state.trDataAnimation }">
+          <div class="img-wrapper">
+            <img class="car-img" alt="Car Image" src="{{state.sCar?.car.imgUrl}}">
+          </div>
+          <div class="card-header">
+            <div class="card-title"><i class="icon-Car"></i>{{'car_summary' | translate }}</div>
+          </div>
+          <section class="item-list content-justify">
+            <div class="item highlighted">
+              <span class="text-primary">{{'color' | translate }}</span>
+              <span>{{state.sCar?.car.color}}</span>
+            </div>
+            <div class="item highlighted">
+              <span class="text-primary">{{'price' | translate }}</span>
+              <span>{{state.sCar?.car.price | currency}}</span>
+            </div>
+            <div class="item highlighted">
+              <span class="text-primary">{{'bodyType' | translate }}</span>
+              <span>{{state.sCar?.car.bodyType}}</span>
+            </div>
+          </section>
+        </section>
+      </div>
+    </div>
+</div>

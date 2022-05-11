@@ -1,0 +1,141 @@
+<div class="layout horizontal"
+     *ngIf="{
+       trDataAnimation: trDataAnimation$ | async,
+       trModeViewAnimation: trModeViewAnimation$ | async,
+       carSelected: carSelected$ | async,
+       dataCars: dataCars$ | async,
+       filter: filter$ | async
+     } as state"
+     [ngClass]="{ panelOpen: state.carSelected.car.id }">
+  <div class="layoutPanel dynamic elevation-z1">
+    <div class="Panel borderRight" *ngIf="catalogMode$ | async as catalogMode">
+      <div class="Panel-Header card-header">
+        <div class="card-title with-people-image">
+          <div class="people-list-image">
+            <img alt="Car" src="assets/images/car.png">
+          </div>
+          {{ 'catalogAuto' | translate }}
+        </div>
+        <div class="right-side">
+          <div class="btn-group">
+            <label class="btn btn-white btn-icon" title="Card Mode"
+                   [value]="catalogMode"
+                   (click)="onCatalogModeSelect('card')"
+                   btnRadio="card" tabindex="0" role="button">
+              <i class="icon-SmallSize"></i>
+            </label>
+            <label class="btn btn-white btn-icon" title="List Mode"
+                   [value]="catalogMode"
+                   (click)="onCatalogModeSelect('list')"
+                   btnRadio="list" tabindex="0" role="button">
+              <i class="icon-List"></i>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="Panel-Body">
+        <section class="Panel-Tbar add-toolbar">
+          <div class="content">
+            <section class="left-side">
+              <button class="btn btn-clear btn-filter" type="button" title="Filters"
+                      (click)="panelFiltersIsOpen=!panelFiltersIsOpen"></button>
+              <div class="switch-checkbox m-left" *ngIf="catalogMode==='list'">
+                <label for="accordionExpand">
+                  <span class="accordion-label">{{ 'collapseAll' | translate }}</span>
+                  <input id="accordionExpand" type="checkbox" (change)="accordionIsOpen = !accordionIsOpen">
+                  <span></span>
+                </label>
+              </div>
+            </section>
+            <section class="right-side m-left-medium">
+              <input class="form-control i-search" type="text"
+                     placeholder="{{('search.' + state.filter.mainFilter.filterName)| translate }}"
+                     [(ngModel)]="filtersActive.filterValue"
+                     [disabled]="catalogMode==='list' && !accordionIsOpen"
+                     (input)="onMainFilterValueChange(filtersActive.filterValue)">
+            </section>
+          </div>
+          <div id="hover-toolbar" class="hover-toolbar"
+               [ngClass]="{'active': panelFiltersIsOpen}">
+            <div class="grid-row leftAlign spaceLg top filter-row">
+              <div class="grid-col left-side">
+                <h5 class="m-top-none">{{ 'search.selectCarsMark' | translate }}</h5>
+                <div class="custom-input-container">
+                  <div class="custom-input" *ngFor="let selectedMark of markList; let i=index">
+                    <label>
+                      <input class="form-control" type="checkbox" name="mark{{i}}"
+                             [checked]="selectedMark"
+                             (change)="onMarkSelect($event, selectedMark, state.filter.markList)">
+                      <span class="custom-input-label">{{selectedMark}}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-col right-side">
+                <h5 class="m-top-none">{{ 'search.filterBy' | translate }}</h5>
+                <div class="custom-input-container">
+                  <div class="custom-input" *ngFor="let filterItem of filterList">
+                    <label>
+                      <input class="form-control" type="radio" name="filterField" [value]="filterItem.filterValue"
+                             [attr.checked]="(filterItem.filterName === state.filter.mainFilter.filterName)? 'checked' : null"
+                             (change)="onMainFilterNameChange(filterItem.filterName)">
+                      <span class="custom-input-label" translate="">{{filterItem.filterName}}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="Panel-Content Y-Scroll custom-scroll"
+             [ngClass]="{'preloader': state.trDataAnimation || state.trModeViewAnimation}">
+          <ng-container *ngIf="state.dataCars?.length !== 0">
+            <ng-container [ngSwitch]="catalogMode">
+              <ng-container *ngSwitchCase="'card'">
+                <ng-container *ngTemplateOutlet="cardTemplate"></ng-container>
+              </ng-container>
+              <ng-container *ngSwitchCase="'list'">
+                <ng-container *ngTemplateOutlet="listTemplate"></ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <div class="empty-catalog" *ngIf="state.dataCars?.length === 0">
+            <h2>{{ 'catalogIsEmpty' | translate }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #cardTemplate>
+    <div class="widget-container" *ngIf="state.dataCars">
+      <ng-container *ngFor="let mark of state.dataCars; let i=index">
+        <div class="widget" *ngFor="let car of mark.cars; let j=index">
+          <app-catalog-card
+            [carItem]="{mark: mark.mark, rowInd: j, colInd: i, car: car}">
+          </app-catalog-card>
+        </div>
+      </ng-container>
+    </div>
+  </ng-template>
+
+  <ng-template #listTemplate>
+    <accordion class="elevation-z2">
+      <accordion-group *ngFor="let mark of state.dataCars; let i=index" [isOpen]="accordionIsOpen">
+          <span accordion-heading>
+            <img alt="mark Logo" src="{{mark.markImgUrl}}"> {{mark.mark}}
+          </span>
+        <div class="widget-container">
+          <div class="widget" *ngFor="let car of mark.cars; let j=index">
+            <app-catalog-card
+              [carItem]="{mark: mark.mark, rowInd: j, colInd: i, car: car}">
+            </app-catalog-card>
+          </div>
+        </div>
+      </accordion-group>
+    </accordion>
+  </ng-template>
+
+  <app-quick-form class="phone-hidden"></app-quick-form>
+</div>
